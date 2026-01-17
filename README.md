@@ -45,7 +45,7 @@ O **Valle Prime DispoSystem** foi desenvolvido para solucionar um problema crít
 
 ### 📸 Prévias
 
-*(Você pode adicionar prints das telas aqui depois)*
+<img width="1599" height="777" alt="image" src="https://github.com/user-attachments/assets/db961963-4afc-4f47-831d-b3656fc4e03c" />
 
 ---
 
