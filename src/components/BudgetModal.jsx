@@ -7,7 +7,7 @@ const BudgetModal = ({ lot, onClose, obraName, developerName = "Vinicius Dev" })
 
     const [downPaymentPercent, setDownPaymentPercent] = useState(5);
     const [downPaymentInstallments, setDownPaymentInstallments] = useState(1);
-    const [balanceInstallments, setBalanceInstallments] = useState(120);
+    const [balanceInstallments, setBalanceInstallments] = useState(200);
     const [copied, setCopied] = useState(false);
 
     const [discountActive, setDiscountActive] = useState(false);
@@ -77,12 +77,12 @@ const BudgetModal = ({ lot, onClose, obraName, developerName = "Vinicius Dev" })
         const checkMeasure = (val) => val && val.toString() !== '0,00' && val.toString() !== '0.00' && val.toString() !== '- / -';
 
         const measures = [
-            checkMeasure(lot.M_Frente) && `FT:${lot.M_Frente}`,
-            checkMeasure(lot.M_Fundo) && `FD:${lot.M_Fundo}`,
-            checkMeasure(lot.M_Lado_Direito) && `LD:${lot.M_Lado_Direito}`,
-            checkMeasure(lot.M_Lado_Esquerdo) && `LE:${lot.M_Lado_Esquerdo}`,
-            checkMeasure(lot.Chanfro) && `CF:${lot.Chanfro}`
-        ].filter(Boolean).join(' ');
+            checkMeasure(lot.M_Frente) && `Frente: ${lot.M_Frente}m`,
+            checkMeasure(lot.M_Fundo) && `Fundo: ${lot.M_Fundo}m`,
+            checkMeasure(lot.M_Lado_Direito) && `L.Dir: ${lot.M_Lado_Direito}m`,
+            checkMeasure(lot.M_Lado_Esquerdo) && `L.Esq: ${lot.M_Lado_Esquerdo}m`,
+            checkMeasure(lot.Chanfro) && `Chanfro: ${lot.Chanfro}m`
+        ].filter(Boolean).join(' | ');
 
         let priceSection = `💰 *Valor do Lote: ${formatCurrency(lotValue)}*`;
 
@@ -227,7 +227,7 @@ ${discountActive ? `💵 *De:* ~${formatCurrency(lotValue)}~ *Por:* *${formatCur
                                 <div className="input-field">
                                     <span>Parcelas do Sinal</span>
                                     <div className="installment-selector">
-                                        {[1, 2, 3, 4, 5].map(n => (
+                                        {[1, 2, 3, 4, 5, 6].map(n => (
                                             <button
                                                 key={n}
                                                 className={`installment-btn ${downPaymentInstallments === n ? 'active' : ''}`}
