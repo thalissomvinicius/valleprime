@@ -53,11 +53,16 @@ const BudgetModal = ({ lot, onClose, obraName, developerName = "Vinicius Dev" })
     // "Simulação do Saldo" usually is on the remaining balance.
     // I'll update remainingBalance based on discount state for the installment calc.
 
+    // Safe calculation for installments (handle empty/0)
+    const safeInstallments = parseInt(balanceInstallments) || 0;
     const effectiveRemainingBalance = discountActive ? openBalance : remainingBalance;
-    const effectiveBalanceInstallmentValue = effectiveRemainingBalance / balanceInstallments;
+    const effectiveBalanceInstallmentValue = safeInstallments > 0 ? effectiveRemainingBalance / safeInstallments : 0;
 
 
-    const formatCurrency = (val) => val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const formatCurrency = (val) => {
+        if (!val || !Number.isFinite(val)) return 'R$ 0,00';
+        return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    };
 
     const getPlanType = (n) => {
         if (n === 1) return 'À Vista';
