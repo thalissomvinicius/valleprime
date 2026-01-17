@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { X, Send, Calculator, FileText, ClipboardCopy, CheckCircle } from 'lucide-react';
 import './BudgetModal.css';
 
+import logo from '../assets/Valle-logo-azul.png';
+
 const BudgetModal = ({ lot, onClose, obraName, developerName = "Vinicius Dev" }) => {
     const lotValue = parseFloat(lot.Valor_Terreno.replace(/\./g, '').replace(',', '.')) || 0;
 
@@ -94,7 +96,7 @@ const BudgetModal = ({ lot, onClose, obraName, developerName = "Vinicius Dev" })
         return `
 🚀 *PROPOSTA VALLE*
 📍 *${subdivision}*
-🔹 QD: ${lot.QD} | LT: ${lot.LT} (${lot.M2} m²)
+🔹 Quadra ${lot.QD} | Lote ${lot.LT} (${lot.M2} m²)
 📏 ${measures || 'Padrão'}
 ${discountActive ? `💵 *De:* ~${formatCurrency(lotValue)}~ *Por:* *${formatCurrency(totalWithDiscount)}*` : `💵 *Valor: ${formatCurrency(lotValue)}*`}
 
@@ -161,10 +163,13 @@ ${discountActive ? `💵 *De:* ~${formatCurrency(lotValue)}~ *Por:* *${formatCur
             <div className="modal-content animate-pop-in" onClick={e => e.stopPropagation()}>
                 <header className="modal-header">
                     <div className="modal-title-wrapper">
-                        <Calculator className="header-icon" />
+                        {/* Replaced Icon with Logo */}
+                        <div className="header-logo-container">
+                            <img src={logo} alt="Valle Logo" className="header-logo" />
+                        </div>
                         <div>
                             <h2>Orçamento do Lote</h2>
-                            <p>QD: {lot.QD} | LT: {lot.LT} - {lot.M2} m²</p>
+                            <p>Quadra {lot.QD} | Lote {lot.LT} - {lot.M2} m²</p>
                         </div>
                     </div>
                     <button className="close-btn" onClick={onClose}><X size={24} /></button>
