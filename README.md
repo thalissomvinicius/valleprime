@@ -19,8 +19,7 @@ Este sistema permite a consulta interativa e em tempo real da disponibilidade de
 
 ## 📌 Status do Projeto
 
-✅ **Versão Online**: [https://![alt text](image.png)valleprime.vercel.app/](https://valleprime.vercel.app/)
-(Substitua pelo link real após deploy)
+✅ **Versão Online**: [https://valleprime.vercel.app/](https://valleprime.vercel.app/)
 
 ## 👨‍💻 Créditos
 
