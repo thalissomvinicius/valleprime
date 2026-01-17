@@ -1,16 +1,30 @@
-# React + Vite
+# Sistema de Disponibilidades - Valle
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este sistema permite a consulta interativa e em tempo real da disponibilidade de lotes para corretores e clientes. O projeto integra visualização de tabelas de status e simulador de orçamentos.
 
-Currently, two official plugins are available:
+## 🚀 Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Tabela de Lotes**: Visualização clara de lotes Disponíveis, Vendidos, Reservados, etc.
+- **Simulador Financeiro**: Cálculo de entradas, parcelas fixas e reajustáveis.
+- **Integração WhatsApp**: Geração automática de propostas compactas para envio rápido.
+- **Exportação PDF**: Geração de relatórios de disponibilidade personalizados.
+- **Filtros Inteligentes**: Busca rápida por Quadra, Lote, Metragem ou Preço.
 
-## React Compiler
+## 🛠️ Tecnologias
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React + Vite (Rápido e Moderno)
+- **Estilização**: CSS Puro (Design "Premium" responsivo)
+- **Integração**: Conexão via API com sistema legado via Proxy seguro (Vercel)
+- **Hospedagem**: Vercel (CI/CD Automático)
 
-## Expanding the ESLint configuration
+## 📌 Status do Projeto
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+✅ **Versão Online**: [https://site-disponibilidade.vercel.app/](https://site-disponibilidade.vercel.app/)
+(Substitua pelo link real após deploy)
+
+## 👨‍💻 Créditos
+
+**Desenvolvido por:** Vinicius Dev
+
+---
+© 2025 Vinicius Dev. Todos os direitos reservados.
