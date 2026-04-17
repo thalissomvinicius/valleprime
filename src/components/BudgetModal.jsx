@@ -182,7 +182,17 @@ ${discountActive ? `💵 *De:* ~${formatCurrency(lotValue)}~ *Por:* *${formatCur
                             <div className="discount-toggle">
                                 <span className="discount-label">Desconto Especial?</span>
                                 <label className="switch">
-                                    <input type="checkbox" checked={discountActive} onChange={() => setDiscountActive(!discountActive)} />
+                                    <input 
+                                        type="checkbox" 
+                                        checked={discountActive} 
+                                        onChange={() => {
+                                            const newVal = !discountActive;
+                                            if (newVal) {
+                                                alert("O Desconto Especial só é válido para os loteamentos com a devida permissão da Diretoria. Certifique-se da liberação antes de aplicar à proposta.");
+                                            }
+                                            setDiscountActive(newVal);
+                                        }} 
+                                    />
                                     <span className="slider round"></span>
                                 </label>
                             </div>
