@@ -6,7 +6,7 @@ import SearchBar from './components/SearchBar';
 import AvailabilityTable from './components/AvailabilityTable';
 import AdminPanel from './pages/AdminPanel';
 import { fetchAvailability } from './services/api';
-import { Building2, LogOut, ChevronDown, FileDown, CheckCircle } from 'lucide-react';
+import { Building2, LogOut, ChevronDown, FileDown, CheckCircle, AlertTriangle, MessageCircle } from 'lucide-react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import logo from './assets/Valle-logo-azul.png';
@@ -290,6 +290,21 @@ function MainApp() {
 
   return (
     <div className="app">
+      <div className="discontinued-banner">
+        <div className="banner-content">
+          <AlertTriangle size={20} className="banner-icon" />
+          <span className="banner-text"><strong>Aviso do Sistema:</strong> Esta plataforma foi descontinuada.</span>
+        </div>
+        <a 
+          href="https://wa.me/5591991697664" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="banner-button"
+        >
+          <MessageCircle size={18} />
+          <span>Falar com Desenvolvedor</span>
+        </a>
+      </div>
       <Header title={currentObraInfo?.descricao}>
         <div className="header-user-section">
           <button
