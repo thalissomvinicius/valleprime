@@ -290,21 +290,27 @@ function MainApp() {
 
   return (
     <div className="app">
-      <div className="discontinued-banner">
-        <div className="banner-content">
-          <AlertTriangle size={20} className="banner-icon" />
-          <span className="banner-text"><strong>Aviso do Sistema:</strong> Esta plataforma foi descontinuada.</span>
+      <div className="discontinued-overlay">
+        <div className="discontinued-card">
+          <div className="discontinued-icon-wrapper">
+            <AlertTriangle className="discontinued-icon" />
+          </div>
+          <h1 className="discontinued-title">Sistema Descontinuado</h1>
+          <p className="discontinued-text">
+            Esta plataforma encerrou suas atividades e não receberá mais atualizações. Em caso de dúvidas ou necessidade de suporte técnico, fale diretamente com o desenvolvedor.
+          </p>
+          <a 
+            href="https://wa.me/5591991697664" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="discontinued-button"
+          >
+            <MessageCircle size={22} />
+            <span>Falar com o Desenvolvedor</span>
+          </a>
         </div>
-        <a 
-          href="https://wa.me/5591991697664" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="banner-button"
-        >
-          <MessageCircle size={18} />
-          <span>Falar com Desenvolvedor</span>
-        </a>
       </div>
+
       <Header title={currentObraInfo?.descricao}>
         <div className="header-user-section">
           <button
