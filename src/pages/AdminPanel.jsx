@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useAuth, OBRAS, STATUS_LOTES } from '../context/AuthContext';
+import { useAuth } from '../context/useAuth';
+import { OBRAS, STATUS_LOTES } from '../constants/auth';
 import {
     Users, Settings, LogOut, Check, X, Edit2, Trash2, Shield,
     Building2, Eye, ChevronDown, ChevronUp, Save, XCircle, Home

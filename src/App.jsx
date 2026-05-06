@@ -1,19 +1,20 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { useAuth, OBRAS } from './context/AuthContext';
+import { useAuth } from './context/useAuth';
+import { OBRAS } from './constants/auth';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import AvailabilityTable from './components/AvailabilityTable';
 import AdminPanel from './pages/AdminPanel';
 import { fetchAvailability } from './services/api';
-import { Building2, LogOut, ChevronDown, FileDown, CheckCircle, AlertTriangle, MessageCircle } from 'lucide-react';
+import { Building2, ChevronDown, FileDown, CheckCircle } from 'lucide-react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import logo from './assets/Valle-logo-azul.png';
 import BudgetModal from './components/BudgetModal';
 
 function MainApp() {
-  const { currentUser, logout, isAdmin } = useAuth();
+  const { currentUser } = useAuth();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerms, setSearchTerms] = useState({ quadra: '', lote: '' });
@@ -34,11 +35,6 @@ function MainApp() {
     return OBRAS.filter(obra => currentUser.obrasPermitidas.includes(obra.codigo));
   }, [currentUser]);
 
-  // Status que o usuário pode ver - Agora fixo em Disponível
-  const allowedStatus = useMemo(() => {
-    return ['0 - Disponível'];
-  }, []);
-
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
@@ -46,7 +42,7 @@ function MainApp() {
         const result = await fetchAvailability(selectedObra);
         setData(result);
         setError(null);
-      } catch (err) {
+      } catch {
         setError('Erro ao carregar dados. Por favor, tente novamente mais tarde.');
       } finally {
         setLoading(false);
@@ -254,7 +250,7 @@ function MainApp() {
           // Logradouro (Index 4) centered as requested
           4: { halign: 'center' }
         },
-        didDrawPage: (data) => {
+        didDrawPage: () => {
           // Footer
           const pageHeight = doc.internal.pageSize.height;
           doc.setFontSize(8);
@@ -290,27 +286,6 @@ function MainApp() {
 
   return (
     <div className="app">
-      <div className="discontinued-overlay">
-        <div className="discontinued-card">
-          <div className="discontinued-icon-wrapper">
-            <AlertTriangle className="discontinued-icon" />
-          </div>
-          <h1 className="discontinued-title">Sistema Descontinuado</h1>
-          <p className="discontinued-text">
-            Esta plataforma encerrou suas atividades e não receberá mais atualizações. Em caso de dúvidas ou necessidade de suporte técnico, fale diretamente com o desenvolvedor.
-          </p>
-          <a 
-            href="https://wa.me/5591991697664" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="discontinued-button"
-          >
-            <MessageCircle size={22} />
-            <span>Falar com o Desenvolvedor</span>
-          </a>
-        </div>
-      </div>
-
       <Header title={currentObraInfo?.descricao}>
         <div className="header-user-section">
           <button
@@ -429,7 +404,7 @@ function MainApp() {
 }
 
 function App() {
-  const { isAuthenticated, isAdmin, loading } = useAuth();
+  const { loading } = useAuth();
 
   if (loading) {
     return (

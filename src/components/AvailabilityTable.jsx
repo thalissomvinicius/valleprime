@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowUp, ArrowDown } from 'lucide-react';
 import './AvailabilityTable.css';
 
 const getStatusClass = (status) => {
@@ -11,13 +12,11 @@ const getStatusClass = (status) => {
     return '';
 };
 
-// Format value to Brazilian Real (R$) currency format
 const formatCurrency = (value) => {
     if (!value) return 'R$ 0,00';
-    // If the value is already a formatted string, parse it first
+
     let numericValue;
     if (typeof value === 'string') {
-        // Remove dots (thousands) and replace comma with dot (decimal)
         numericValue = parseFloat(value.replace(/\./g, '').replace(',', '.'));
     } else {
         numericValue = value;
@@ -25,7 +24,6 @@ const formatCurrency = (value) => {
 
     if (isNaN(numericValue)) return 'R$ 0,00';
 
-    // Format as Brazilian currency
     return numericValue.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL',
@@ -34,7 +32,24 @@ const formatCurrency = (value) => {
     });
 };
 
-import { ArrowUp, ArrowDown } from 'lucide-react';
+const SortableHeader = ({ label, mobileLabel, sortKey, onSort, sortConfig }) => {
+    const isActive = sortConfig?.key === sortKey;
+    const sortIcon = isActive
+        ? sortConfig.direction === 'asc'
+            ? <ArrowUp size={14} />
+            : <ArrowDown size={14} />
+        : null;
+
+    return (
+        <th onClick={() => onSort(sortKey)} className="sortable-header">
+            <div className="header-content">
+                <span className="hide-mobile">{label}</span>
+                <span className="show-mobile">{mobileLabel}</span>
+                {sortIcon}
+            </div>
+        </th>
+    );
+};
 
 const AvailabilityTable = ({ data, loading, onRowClick, onSort, sortConfig }) => {
     if (loading) {
@@ -45,30 +60,15 @@ const AvailabilityTable = ({ data, loading, onRowClick, onSort, sortConfig }) =>
         return <div className="no-results">Nenhum lote encontrado.</div>;
     }
 
-    const renderSortIcon = (key) => {
-        if (!sortConfig || sortConfig.key !== key) return null;
-        return sortConfig.direction === 'asc' ? <ArrowUp size={14} /> : <ArrowDown size={14} />;
-    };
-
-    const SortableHeader = ({ label, mobileLabel, sortKey }) => (
-        <th onClick={() => onSort(sortKey)} className="sortable-header">
-            <div className="header-content">
-                <span className="hide-mobile">{label}</span>
-                <span className="show-mobile">{mobileLabel}</span>
-                {renderSortIcon(sortKey)}
-            </div>
-        </th>
-    );
-
     return (
         <div className="table-container">
             <table className="data-table">
                 <thead>
                     <tr>
-                        <SortableHeader label="Quadra" mobileLabel="QD" sortKey="QD" />
-                        <SortableHeader label="Lote" mobileLabel="LT" sortKey="LT" />
-                        <SortableHeader label="M²" mobileLabel="M²" sortKey="M2" />
-                        <SortableHeader label="Valor" mobileLabel="R$" sortKey="Valor_Terreno" />
+                        <SortableHeader label="Quadra" mobileLabel="QD" sortKey="QD" onSort={onSort} sortConfig={sortConfig} />
+                        <SortableHeader label="Lote" mobileLabel="LT" sortKey="LT" onSort={onSort} sortConfig={sortConfig} />
+                        <SortableHeader label="M²" mobileLabel="M²" sortKey="M2" onSort={onSort} sortConfig={sortConfig} />
+                        <SortableHeader label="Valor" mobileLabel="R$" sortKey="Valor_Terreno" onSort={onSort} sortConfig={sortConfig} />
                         <th><span className="hide-mobile">Status</span><span className="show-mobile">ST.</span></th>
                         <th><span className="hide-mobile">Logradouro</span><span className="show-mobile">LOG.</span></th>
                     </tr>
