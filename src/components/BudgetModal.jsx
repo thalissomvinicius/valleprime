@@ -159,7 +159,7 @@ const BudgetModal = ({ lot, onClose, obraName }) => {
                                 <div className="input-field">
                                     <span>Parcelas do Sinal</span>
                                     <div className="installment-selector">
-                                        {[1, 2, 3, 4, 5, 6].map(n => (
+                                        {[1, 2, 3, 4, 5].map(n => (
                                             <button
                                                 key={n}
                                                 className={`installment-btn ${downPaymentInstallments === n ? 'active' : ''}`}
