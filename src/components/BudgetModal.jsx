@@ -19,6 +19,7 @@ const BudgetModal = ({ lot, onClose, obraName }) => {
     // Safe calculation for installments (handle empty/0)
     const safeInstallments = parseInt(balanceInstallments) || 0;
     const balanceInstallmentValue = safeInstallments > 0 ? remainingBalance / safeInstallments : 0;
+    const subdivision = obraName || lot.Descricao_Empreendimento || 'VALLE';
 
 
     const formatCurrency = (val) => {
@@ -29,12 +30,11 @@ const BudgetModal = ({ lot, onClose, obraName }) => {
     const getPlanType = (n) => {
         if (n === 1) return 'À Vista';
         if (n <= 36) return 'Fixas';
+        if (n <= 72) return 'Corrigidas';
         return 'Reajustáveis';
     };
 
     const getMessage = () => {
-        const subdivision = obraName || lot.Descricao_Empreendimento || 'VALLE';
-
         // Formatar medidas: remove se for 0.00 ou - / -
         const checkMeasure = (val) => val && val.toString() !== '0,00' && val.toString() !== '0.00' && val.toString() !== '- / -';
 
@@ -55,7 +55,8 @@ const BudgetModal = ({ lot, onClose, obraName }) => {
 
 *Condições:*
 📝 *Sinal:* ${formatCurrency(downPaymentTotal)} (${downPaymentInstallments > 1 ? downPaymentInstallments + 'x de ' + formatCurrency(downPaymentInstallmentValue) : '1x'})
-📅 *Saldo:* ${balanceInstallments}x de *${formatCurrency(balanceInstallmentValue)}* (${getPlanType(balanceInstallments)})
+📅 *Saldo a parcelar:* ${formatCurrency(remainingBalance)}
+📆 *Parcelamento:* ${balanceInstallments}x de *${formatCurrency(balanceInstallmentValue)}* (${getPlanType(balanceInstallments)})
 
 📑 *Docs:* RG, CPF, Comp. Residência, Cert. de Nascimento ou Casamento.
 ✅ Sem consulta SPC/Serasa. Financiamento Próprio.
@@ -123,6 +124,7 @@ const BudgetModal = ({ lot, onClose, obraName }) => {
                         <div>
                             <h2>Orçamento do Lote</h2>
                             <p>Quadra {lot.QD} | Lote {lot.LT} - {lot.M2} m²</p>
+                            <p className="modal-subdivision">{subdivision}</p>
                         </div>
                     </div>
                     <button className="close-btn" onClick={onClose}><X size={24} /></button>

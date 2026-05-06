@@ -161,11 +161,13 @@ body {
   border-radius: var(--border-radius);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   box-shadow: var(--shadow-sm);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--border-color);
   min-width: 200px;
+  text-align: center;
 }
 
 .stat-card:hover {
@@ -195,6 +197,8 @@ body {
 .stat-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .stat-value {
@@ -252,11 +256,13 @@ body {
 
   .stat-card {
     min-width: 0;
-    padding: 0.75rem;
+    min-height: 150px;
+    padding: 1rem 0.75rem;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    text-align: left;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    text-align: center;
   }
 
   .stat-card.update-info {

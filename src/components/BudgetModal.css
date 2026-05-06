@@ -38,6 +38,7 @@
     display: flex;
     gap: 0.75rem;
     align-items: center;
+    min-width: 0;
 }
 
 .modal-title-wrapper h2 {
@@ -52,6 +53,22 @@
     font-size: 0.8rem;
     opacity: 0.9;
     font-weight: 400;
+}
+
+.modal-title-wrapper>div:last-child {
+    min-width: 0;
+}
+
+.modal-subdivision {
+    max-width: 360px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    opacity: 0.82 !important;
+    margin-top: 0.12rem !important;
 }
 
 .header-logo-container {
@@ -315,6 +332,10 @@
     .modal-body {
         padding: 0.75rem;
         flex: 1;
+    }
+
+    .modal-subdivision {
+        max-width: 220px;
     }
 
     .footer-actions {
