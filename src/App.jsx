@@ -386,7 +386,17 @@ function MainApp() {
         color: 'var(--text-muted)',
         fontSize: '0.85rem'
       }}>
-        <p style={{ marginBottom: '0.5rem' }}>Desenvolvido por <strong>Vinicius Dev</strong></p>
+        <p style={{ marginBottom: '0.5rem' }}>
+          Desenvolvido por{' '}
+          <a
+            href="https://wa.me/5591991697664"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--primary-color)', fontWeight: 700, textDecoration: 'none' }}
+          >
+            Vinicius Dev
+          </a>
+        </p>
         {data.length > 0 && data[0].Data_Atualizacao && (
           <p style={{ fontSize: '0.75rem', opacity: 0.8 }}>Última atualização: {data[0].Data_Atualizacao}</p>
         )}
